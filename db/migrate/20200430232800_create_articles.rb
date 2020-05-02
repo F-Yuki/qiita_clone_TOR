@@ -1,5 +1,5 @@
 class CreateArticles < ActiveRecord::Migration[5.2]
-  def change
+  def up
     create_table :articles do |t|
       t.string :title
       t.text :body
@@ -10,5 +10,4 @@ class CreateArticles < ActiveRecord::Migration[5.2]
 
   def down
   end
-
 end
