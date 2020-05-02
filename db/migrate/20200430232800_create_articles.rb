@@ -7,4 +7,8 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.timestamps
     end
   end
+
+  def down
+  end
+
 end
