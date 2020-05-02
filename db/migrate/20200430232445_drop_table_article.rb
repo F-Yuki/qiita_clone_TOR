@@ -4,6 +4,5 @@ class DropTableArticle < ActiveRecord::Migration[5.2]
   end
 
   def down
-    raise ActiveRecord::IrreversibleMigration
   end
 end
