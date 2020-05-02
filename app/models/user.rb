@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # emailは＠と.の使用を必須にする
   VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.freeze
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  # nameは入力必須
+  # nameは入力必須にする
   validates :name, presence: true
   # accountは入力必須、重複禁止
   validates :account, presence: true, uniqueness: true
