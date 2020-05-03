@@ -75,6 +75,7 @@ jobs:
             bundle exec rails db:create db:migrate
             TEST_FILES="$(circleci tests glob \"spec/**/*_spec.rb\" | circleci tests split --split-by=timings)"
             bundle exec rspec --require rails_helper \
+                              --format RspecJunitFormatter \
                               --color \
                               --format progress \
                               --out ~/rspec/rspec.xml
