@@ -41,12 +41,14 @@ RSpec.describe User, type: :model do
       end
 
       context "同一のemailが存在する" do
-        before { create(:user, email: "fushifushi@example.com") }
+        before do
+          create(:user, email: "fushifushi@example.com")
+        end
 
         let(:user) { build(:user, email: "fushifushi@example.com") }
         it "エラーです" do
           user.valid?
-          expect(user.errors.messages[:email]).to include "Already used"
+          expect(user.errors.messages[:email]).to include "has already been taken"
         end
       end
 

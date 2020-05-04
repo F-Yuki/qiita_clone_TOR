@@ -9,20 +9,13 @@ RSpec.describe Article, type: :model do
       end
     end
 
-    context "下書きとして投稿する場合" do
+    context "下書きと公開記事として投稿する場合" do
       let(:article) { build(:article, status: "draft") }
-      it "下書き記事が投稿される" do
-        expect(article).to be_valid
-
-        expect(article.status).to eq "draft"
-      end
-    end
-
-    context "公開記事として投稿する場合" do
-      let(:article) { build(:article, status: "published") }
-      it "公開記事が投稿される" do
-        expect(article).to be_valid
-        expect(article.status).to eq "published"
+      it "下書きと公開記事として投稿される" do
+        aggregate_failures "testing items" do
+          expect(article).to be_valid
+          expect(article.status).to eq "draft"
+        end
       end
     end
   end
