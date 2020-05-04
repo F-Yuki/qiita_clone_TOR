@@ -8,14 +8,31 @@ RSpec.describe Article, type: :model do
         expect(article).to be_valid
       end
     end
+
+    context "下書きとして投稿する場合" do
+      let(:article) { build(:article, status: "draft") }
+      it "下書き記事が投稿される" do
+        expect(article).to be_valid
+
+        expect(article.status).to eq "draft"
+      end
+    end
+
+    context "公開記事として投稿する場合" do
+      let(:article) { build(:article, status: "published") }
+      it "公開記事が投稿される" do
+        expect(article).to be_valid
+        expect(article.status).to eq "published"
+      end
+    end
   end
 
   describe "異常テスト" do
     context "タイトルが入力されていないとき" do
-      let(:article) { build(:article, titile: nil) }
+      let(:article) { build(:article, title: nil) }
       it "エラーする" do
         article.valid?
-        expect(article.errors.messages[:titile]).to include "can't be blank"
+        expect(article.errors.messages[:title]).to include "can't be blank"
       end
     end
 

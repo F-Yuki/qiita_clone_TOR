@@ -13,8 +13,8 @@ RSpec.describe User, type: :model do
   describe "異常テスト" do
     describe "名前について" do
       context "名前が入力されていないとき" do
+        let(:user) { build(:user, name: nil) }
         it "エラーです" do
-          user = build(:user, name: nil)
           user.valid?
           expect(user.errors.messages[:name]).to include "can't be blank"
         end
@@ -23,8 +23,8 @@ RSpec.describe User, type: :model do
 
     describe "アカウントについて" do
       context "アカウントが入力されていないとき" do
+        let(:user) { build(:user, account: nil) }
         it "エラーです" do
-          user = build(:user, account: nil)
           user.valid?
           expect(user.errors.messages[:account]).to include "can't be blank"
         end
@@ -33,25 +33,26 @@ RSpec.describe User, type: :model do
 
     describe "emailについて" do
       context "emailが入力されていないとき" do
+        let(:user) { build(:user, email: nil) }
         it "エラーです" do
-          user = build(:user, email: nil)
           user.valid?
           expect(user.errors.messages[:email]).to include "can't be blank"
         end
       end
 
       context "同一のemailが存在する" do
+        before { create(:user, email: "fushifushi@example.com") }
+
+        let(:user) { build(:user, email: "fushifushi@example.com") }
         it "エラーです" do
-          create(:user, email: "fushifushi@example.com")
-          user = build(:user, email: "fushifushi@example.com")
           user.valid?
           expect(user.errors.messages[:email]).to include "Already used"
         end
       end
 
       context "emailに@が含まれない時" do
+        let(:user) { build(:user, email: "fushifushiexample.com") }
         it "エラーする" do
-          user = build(:user, email: "tsuruokaexample.com")
           user.valid?
           expect(user.errors.messages[:email]).to include "is not an email"
         end
@@ -60,8 +61,8 @@ RSpec.describe User, type: :model do
 
     describe "パスワードについて" do
       context "パスワードが入力されていない時" do
+        let(:user) { build(:user, password: nil) }
         it "エラーする" do
-          user = build(:user, password: nil)
           user.valid?
           expect(user.errors.messages[:password]).to include "can't be blank"
         end
