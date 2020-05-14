@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Article, type: :model do
-  describe "正常テスト" do
+  describe "正常系テスト" do
     context "タイトル、本文が入力されているとき" do
       let(:article) { build(:article) }
       it "記事が投稿される" do
@@ -20,7 +20,7 @@ RSpec.describe Article, type: :model do
     end
   end
 
-  describe "異常テスト" do
+  describe "異常系テスト" do
     context "タイトルが入力されていないとき" do
       let(:article) { build(:article, title: nil) }
       it "エラーする" do

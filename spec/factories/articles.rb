@@ -5,7 +5,7 @@ FactoryBot.define do
     status { :draft }
     user
 
-    trait :published_status do
+    trait :published do
       status { :published }
     end
   end
