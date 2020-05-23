@@ -17,7 +17,7 @@ class User < ApplicationRecord
   # nameは入力必須にする
   validates :name, presence: true
   # accountは入力必須、重複禁止
-  validates :account, presence: true, uniqueness: true
+  validates :account, presence: true
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
